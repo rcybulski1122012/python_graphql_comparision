@@ -3,6 +3,7 @@ from django.db import models
 
 User = get_user_model()
 
+
 class Priority(models.TextChoices):
     LOW = "low", "Low"
     MEDIUM = "medium", "Medium"
