@@ -2,4 +2,4 @@ from django.apps import AppConfig
 
 
 class UsersConfig(AppConfig):
-    name = "users"
+    name = "python_graphql_comparison.apps.users"

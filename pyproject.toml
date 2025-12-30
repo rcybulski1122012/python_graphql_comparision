@@ -1,5 +1,5 @@
 [project]
-name = "python-graphql-comparision"
+name = "python-graphql-comparison"
 version = "0.1.0"
 description = "Add your description here"
 requires-python = ">=3.13"
@@ -7,3 +7,43 @@ dependencies = [
     "django>=6.0",
     "strawberry-graphql-django>=0.72.0",
 ]
+
+[project.optional-dependencies]
+dev = [
+    "pre-commit>=3.5.0",
+    "mypy>=1.8.0",
+    "django-stubs>=4.2.7",
+    "types-requests",
+    "ruff>=0.3.0",
+]
+
+[tool.mypy]
+python_version = "3.13"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+check_untyped_defs = true
+disallow_untyped_decorators = true
+no_implicit_optional = true
+strict_optional = true
+plugins = ["mypy_django_plugin.main"]
+
+[[tool.mypy.overrides]]
+module = ["*.migrations.*"]
+ignore_errors = true
+
+[tool.django-stubs]
+django_settings_module = "python_graphql_comparison.settings"
+
+[tool.ruff]
+target-version = "py312"
+line-length = 100
+lint.select = ["E", "F", "B", "I", "N", "UP", "ANN", "COM", "C4", "DTZ", "T10", "EM", "ISC", "ICN", "G", "INP", "PIE", "T20", "PT", "Q", "RSE", "RET", "SIM", "TID", "TCH", "ARG", "PTH", "ERA", "PD", "PGH", "PL", "TRY", "FLY", "PERF", "RUF"]
+lint.ignore = ["ANN401", "COM812"]
+exclude = ["**/migrations/**", "manage.py"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+line-ending = "auto"

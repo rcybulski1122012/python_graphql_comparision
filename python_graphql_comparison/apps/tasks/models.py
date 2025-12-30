@@ -39,6 +39,7 @@ class CommentActivity(Activity):
     class Meta:
         verbose_name_plural = "Comment activities"
 
+
 class StatusChangeActivity(Activity):
     old_status = models.CharField(choices=Column.choices, max_length=20)
     new_status = models.CharField(choices=Column.choices, max_length=20)
