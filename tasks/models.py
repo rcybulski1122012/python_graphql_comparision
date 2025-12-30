@@ -36,7 +36,12 @@ class Activity(models.Model):
 class CommentActivity(Activity):
     text = models.TextField(blank=True, default="", max_length=1000)
 
+    class Meta:
+        verbose_name_plural = "Comment activities"
 
 class StatusChangeActivity(Activity):
     old_status = models.CharField(choices=Column.choices, max_length=20)
     new_status = models.CharField(choices=Column.choices, max_length=20)
+
+    class Meta:
+        verbose_name_plural = "Status change activities"
