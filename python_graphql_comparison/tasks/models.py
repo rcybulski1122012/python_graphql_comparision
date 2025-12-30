@@ -1,5 +1,6 @@
 from django.contrib.auth import get_user_model
 from django.db import models
+from polymorphic.models import PolymorphicModel
 
 User = get_user_model()
 
@@ -13,8 +14,7 @@ class Priority(models.TextChoices):
 
 class Column(models.TextChoices):
     TODO = "todo", "Todo"
-    IN_PROGRESS = "inprogress", "In Progress"
-    COMPLETED = "completed", "Completed"
+    IN_PROGRESS = "in_progress", "In Progress"
     DONE = "done", "Done"
 
 
@@ -28,8 +28,11 @@ class Task(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
 
-class Activity(models.Model):
+class Activity(PolymorphicModel):
     actor = models.ForeignKey(User, on_delete=models.PROTECT)
+    task = models.ForeignKey(
+        Task, on_delete=models.CASCADE, related_name="activities", null=True, blank=True
+    )
     created_at = models.DateTimeField(auto_now_add=True)
 
 

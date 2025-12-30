@@ -4,6 +4,7 @@ import django.contrib.auth.models
 import django.contrib.auth.validators
 import django.utils.timezone
 from django.db import migrations, models
+import python_graphql_comparison
 
 
 class Migration(migrations.Migration):
@@ -107,7 +108,7 @@ class Migration(migrations.Migration):
                 ),
                 (
                     "avatar_color",
-                    python_graphql_comparison.apps.utils.fields.HexColorField(
+                    python_graphql_comparison.utils.fields.HexColorField(
                         blank=True,
                         help_text="Hex color code for user avatar (e.g., #FF5733)",
                         max_length=7,

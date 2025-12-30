@@ -1,5 +1,5 @@
 """
-A hex color code string, such as #FF5733. 
+A hex color code string, such as #FF5733.
 """
 scalar ColorCode
 
@@ -45,20 +45,20 @@ type User implements Node {
 """
 Represents a polymorphic event in the history of a Task.
 """
-interface Activity {
+interface Activity implements Node {
   id: ID!
   timestamp: DateTime!
   actor: User!
 }
 
-type CommentActivity implements Activity {
+type CommentActivity implements Activity & Node {
   id: ID!
   timestamp: DateTime!
   actor: User!
   text: String!
 }
 
-type StatusChangeActivity implements Activity {
+type StatusChangeActivity implements Activity & Node {
   id: ID!
   timestamp: DateTime!
   actor: User!
@@ -84,7 +84,7 @@ type Task implements Node {
   """
   **Authorization:** Visible only to team members.
   """
-  description: String
+  description: String!
 
   """
   **Performance:** Uses DataLoader.
@@ -106,46 +106,31 @@ type TaskEdge {
   node: Task!
 }
 
-# --- Mutation Error Handling ---
 
-"""
-Common interface for errors.
-Note: This interface cannot be in the Union, but the Types implementing it can be.
-"""
-interface BaseError {
-  message: String!
+# --- Mutation Inpust ---
+
+input CreateTaskInput {
+  title: String!
+  priority: Priority!
+  status: Column!
+  description: String
+  assignee: ID
 }
 
-type TaskNotFoundError implements BaseError {
-  message: String!
-  suggestedAction: String
+input UpdateTaskInput {
+  title: String
+  priority: Priority
+  status: Column
+  description: String
+  assignee: ID
 }
 
-type InvalidColumnError implements BaseError {
-  message: String!
-  """
-  Returns the valid enums the client could use.
-  """
-  availableColumns: [Column!]!
-}
-
-type MoveTaskSuccess {
-  task: Task!
-  movedToColumn: Column!
-  previousColumn: Column!
-}
-
-"""
-The Result Union.
-Contains only Object Types (MoveTaskSuccess, TaskNotFoundError, etc.), no Interfaces.
-"""
-union MoveTaskResult = MoveTaskSuccess | TaskNotFoundError | InvalidColumnError
 
 # --- Root Types ---
 
 type Query {
   node(id: ID!): Node
-
+  task(id: ID!): Task
   tasks(
     first: Int,
     after: String,
@@ -156,9 +141,9 @@ type Query {
 }
 
 type Mutation {
-  moveTask(taskId: ID!, newColumn: Column!, newIndex: Int!): MoveTaskResult
-
-  createTask(title: String!, priority: Priority = LOW): Task
+  createTask(data: CreateTaskInput): Task!
+  updateTask(id: ID!, data: UpdateTaskInput): Task!
+  deleteTask(id: ID!): Task!
 }
 
 type Subscription {

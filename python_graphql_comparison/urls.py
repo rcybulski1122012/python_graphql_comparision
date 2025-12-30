@@ -17,7 +17,12 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path
+from django.views.decorators.csrf import csrf_exempt
+from strawberry.django.views import GraphQLView
+
+from python_graphql_comparison.graphql.strawberry_django.schema import schema as strawberry_schema
 
 urlpatterns = [
     path("admin/", admin.site.urls),
+    path("strawberry_django/graphql/", csrf_exempt(GraphQLView.as_view(schema=strawberry_schema))),
 ]

@@ -37,8 +37,9 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "python_graphql_comparison.apps.users",
-    "python_graphql_comparison.apps.tasks",
+    "python_graphql_comparison.users",
+    "python_graphql_comparison.tasks",
+    "polymorphic",
 ]
 
 AUTH_USER_MODEL = "users.User"

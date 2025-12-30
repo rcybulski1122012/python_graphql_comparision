@@ -72,7 +72,7 @@ class Migration(migrations.Migration):
                     models.CharField(
                         choices=[
                             ("todo", "Todo"),
-                            ("inprogress", "In Progress"),
+                            ("in_progress", "In Progress"),
                             ("completed", "Completed"),
                             ("done", "Done"),
                         ],
@@ -84,7 +84,7 @@ class Migration(migrations.Migration):
                     models.CharField(
                         choices=[
                             ("todo", "Todo"),
-                            ("inprogress", "In Progress"),
+                            ("in_progress", "In Progress"),
                             ("completed", "Completed"),
                             ("done", "Done"),
                         ],
@@ -124,7 +124,7 @@ class Migration(migrations.Migration):
                     models.CharField(
                         choices=[
                             ("todo", "Todo"),
-                            ("inprogress", "In Progress"),
+                            ("in_progress", "In Progress"),
                             ("completed", "Completed"),
                             ("done", "Done"),
                         ],

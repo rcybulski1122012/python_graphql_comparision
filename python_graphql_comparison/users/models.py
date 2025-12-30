@@ -1,6 +1,6 @@
 from django.contrib.auth.models import AbstractUser
 
-from python_graphql_comparison.apps.utils.fields import HexColorField
+from python_graphql_comparison.utils.fields import HexColorField
 
 
 class User(AbstractUser):
