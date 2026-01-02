@@ -131,13 +131,7 @@ input UpdateTaskInput {
 type Query {
   node(id: ID!): Node
   task(id: ID!): Task
-  tasks(
-    first: Int,
-    after: String,
-    priority: Priority,
-    column: Column,
-    assigneeId: ID
-  ): TaskConnection
+  tasks(first: Int, after: String, last: Int, before: String): TaskConnection
 }
 
 type Mutation {

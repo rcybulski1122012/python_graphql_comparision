@@ -23,7 +23,7 @@ class Task(models.Model):
     priority = models.CharField(choices=Priority.choices, max_length=20)
     column = models.CharField(choices=Column.choices, max_length=20)
     description = models.TextField(blank=True, default="", max_length=1000)
-    assignee = models.ForeignKey(User, on_delete=models.PROTECT)
+    assignee = models.ForeignKey(User, on_delete=models.PROTECT, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

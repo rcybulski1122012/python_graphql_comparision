@@ -4,10 +4,14 @@ version = "0.1.0"
 description = "Add your description here"
 requires-python = ">=3.13"
 dependencies = [
+    "ariadne>=0.26.2",
+    "channels>=4.3.2",
     "django>=6.0",
     "django-polymorphic>=4.5.1",
+    "ship>=0.3",
     "strawberry-graphql-django>=0.72.0",
     "strawberry-graphql[cli]>=0.288.1",
+    "uvicorn>=0.40.0",
 ]
 
 [project.optional-dependencies]
@@ -25,7 +29,7 @@ django_settings_module = "python_graphql_comparison.settings"
 target-version = "py312"
 line-length = 100
 lint.select = ["E", "F", "B", "I", "N", "UP", "ANN", "COM", "C4", "DTZ", "T10", "EM", "ISC", "ICN", "G", "INP", "PIE", "T20", "PT", "Q", "RSE", "RET", "SIM", "TID", "TCH", "ARG", "PTH", "ERA", "PD", "PGH", "PL", "TRY", "FLY", "PERF", "RUF"]
-lint.ignore = ["ANN401", "COM812"]
+lint.ignore = ["ANN401", "COM812", "ANN001", "ANN002", "ANN003", "ARG001"]
 exclude = ["**/migrations/**", "manage.py"]
 
 [tool.ruff.format]
